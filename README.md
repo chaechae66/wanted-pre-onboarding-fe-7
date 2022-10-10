@@ -17,6 +17,7 @@
     3. error가 없을 경우 submit 버튼을 활성화 시켜주기
 * 데모영상
 <br />
+
     ![Assignment1](./public/images/assignment1.gif)
 
 ### Assignment2
@@ -31,6 +32,7 @@
     5. 로컬 스토리지에 토큰이 있는 지 확인 후 있으면 todo 사이트로 navigate 해주기
 * 데모영상 
 <br />
+
     ![Assignment2](./public/images/assignment2.gif)
 
 ### Assignment3
