@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 
-function EmailForm({ txt }) {
+function EmailForm({ txt , handleSubmit }) {
 
     const [disabled, setDisabled] = useState(true);
     const [error, setError] = useState({
@@ -8,9 +8,10 @@ function EmailForm({ txt }) {
         password : "비밀번호를 입력하세요",
     });
 
+    const emailRef = useRef("");
+    const passwordRef = useRef("");
+
     useEffect(()=>{
-        console.log("email",error.email);
-        console.log("password",error.password);
         if(!error.email.trim() && !error.password.trim()){
             setDisabled(false);
         }
@@ -58,11 +59,21 @@ function EmailForm({ txt }) {
         }
     }
 
+    const onSubmit = (e) => {
+        e.preventDefault();
+        const data = {
+            email : emailRef.current.value,
+            password : passwordRef.current.value,
+        }
+        handleSubmit(data);
+    }
+
     return (
         <form>
             <label>이메일
             <input 
                 type="email" 
+                ref={emailRef}
                 onChange={onErrorEmail} 
             />
             </label>
@@ -71,12 +82,13 @@ function EmailForm({ txt }) {
             <label>비밀번호 
             <input 
                 type="password" 
+                ref={passwordRef}
                 onChange={onErrorPassword}
             />
             </label>
             <div>{error.password}</div>
             <br />
-            <button type='submit' disabled={disabled} >{txt}</button>
+            <button type='submit' disabled={disabled} onClick={onSubmit}>{txt}</button>
         </form>
     ) 
 }
