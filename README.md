@@ -18,7 +18,7 @@
 * 데모영상
 <br />
 
-![Assignment1](./public/images/assignment1.gif)
+<img src="./public/images/assignment1.gif" alt="Assignment1" width="600px" />
 
 ### Assignment2
 * 프로젝트의 실행 방법
@@ -33,7 +33,7 @@
 * 데모영상 
 <br />
 
-![Assignment2](./public/images/assignment2.gif)
+<img src="./public/images/assignment2.gif" alt="Assignment2" width="600px" />
 
 ### Assignment3
 * 프로젝트의 실행 방법
