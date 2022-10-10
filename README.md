@@ -52,7 +52,19 @@
 ## :: 2. 투두 리스트
 ### Assignment4
 * 프로젝트의 실행 방법
+    1. form 태그 안에 input 창과 submit 버튼을 만들어 줍니다.
+    2. submit 눌렀을 때 input 창의 value를 받게 합니다.
+    3. 이 value를 /todos의 post의 body에 넣습니다.
+    4. 사용자 인증을 위하여 localstorage에 getItem을 받아 Bearer 과 함께 문자열을 만들어 줍니다.
+    5. 이렇게 만들아진 /todos를 useEffect를 통해 첫 랜더링 때 get으로 받습니다.
+    6. useState로 5번의 데이터를 담아 map을 이용하여 html 요소로 뿌려줍니다.
+        * 이 때 key는 id로 합니다.
+    7. post로 받은 데이터를 setTodo로 업데이트 시켜줍니다.
+        * 불변성을 해치지 않기 위해 기존 데이터를 스프레드 문법을 이용합니다.
 * 데모영상 
+<br />
+
+<img src="./public/images/assignment4.gif" alt="Assignment4" width="600px" />
 
 ### Assignment5
 * 프로젝트의 실행 방법
