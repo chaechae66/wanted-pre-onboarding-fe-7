@@ -1,10 +1,17 @@
 import axios from 'axios'
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import EmailForm from '../components/emailForm'
 
 function Login() {
     const navigate = useNavigate();
+
+    useEffect(()=>{
+        const isToken = localStorage.getItem('token');
+        if(isToken){
+            navigate('/todo')
+        }
+    },[navigate])
 
     const handleSubmit = (_data) => {
         axios.post("https://pre-onboarding-selection-task.shop/auth/signin",_data)

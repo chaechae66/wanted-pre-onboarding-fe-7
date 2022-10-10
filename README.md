@@ -37,7 +37,13 @@
 
 ### Assignment3
 * 프로젝트의 실행 방법
+    1. 로컬스토리지에 getItem으로 토큰이 있는 지 확인한다.
+    2. 있으면 /todo 로 navigate 시켜주고
+    3. 없으면 / 로 navigate 시켜준다.
 * 데모영상 
+<br />
+
+<img src="./public/images/assignment3.gif" alt="Assignment3" width="600px" />
 
 <br />
 
