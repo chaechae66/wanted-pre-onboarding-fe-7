@@ -1,6 +1,7 @@
 import axios from 'axios';
 import React, { useEffect, useRef, useState } from 'react'
 import { useNavigate } from 'react-router-dom';
+import TodoLi from '../components/todoLi';
 
 function Todo() {
     const navigate = useNavigate();
@@ -14,16 +15,21 @@ function Todo() {
         }
     },[navigate])
 
-    useEffect(()=>{
+    const fetchData = () => {
         const token = localStorage.getItem("token");
         axios.get("https://pre-onboarding-selection-task.shop/todos",{
             headers: {
                 "Authorization": `Bearer ${token}` 
             }
-    }).then((res)=>{
-        setTodo(res.data)
-        console.log(res.data);
-    })
+        }).then((res)=>{
+            setTodo(res.data)
+        }).catch((err)=>{
+            console.log('err',err);
+        })
+    }
+
+    useEffect(()=>{
+        fetchData();
     },[])
 
     const onSubmit = (e) => {
@@ -48,6 +54,43 @@ function Todo() {
         })
     }
 
+    const handleChange = ({id, todolist, isCompleted}) => {
+        const token = localStorage.getItem("token");
+        axios.put(`https://pre-onboarding-selection-task.shop/todos/${id}`,
+        {todo : todolist, isCompleted}, {headers: {
+            "Authorization": `Bearer ${token}` 
+        }
+        },).then((res)=>{
+            const newTodo = todo.map((list)=>{
+                if(list.id === res.data.id){
+                    return res.data
+                }
+                return list
+            })
+            setTodo(newTodo);
+        }).catch((err)=>{
+            console.log('err',err);
+        })
+    }
+
+    const handleDelete = (id) => {
+        const token = localStorage.getItem("token");
+        axios.delete(`https://pre-onboarding-selection-task.shop/todos/${id}`,
+        {headers: {
+            "Authorization": `Bearer ${token}` 
+        }
+        }).then((res)=>{
+            console.log(res)
+            const delTodo = todo.filter((list)=>{
+                return list.id !== id
+            })
+            setTodo(delTodo);
+            alert("삭제가 성공되었습니다.");
+        }).catch((err)=>{
+            console.log('err',err)
+        });
+    }
+
     return (
         <>
             <h2>반갑습니다 유저님, 투두 사이트입니다.</h2>
@@ -56,21 +99,7 @@ function Todo() {
                 !todo? <div>투두를 만들어주세요</div> 
                 : todo.map((val) => {
                     return(
-                    <div key={val.id}>
-                        <span style={{
-                            "color" : "#aaa"
-                        }}
-                        >할 일</span>
-                        <span style={{
-                            "display" : "inline-block",
-                            "width" : "400px",
-                            "paddingLeft" : "10px"
-                        }}>{val.todo}</span>
-                        <label>
-                            완료여부
-                            <input type="checkbox" defaultChecked={val.isCompleted}/>
-                        </label>
-                    </div> 
+                        <TodoLi key={val.id} val={val} handleDelete={handleDelete} handleChange={handleChange} />
                     )
                 })
             }

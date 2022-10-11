@@ -68,4 +68,13 @@
 
 ### Assignment5
 * 프로젝트의 실행 방법
+    1. 업데이트를 시켜주기 위해 수정버튼과 삭제버튼을 만듭니다.
+    2. 수정버튼을 클릭 시 input 과 완료 여부를 활성화 시켜주고 제출과 취소 버튼을 만듭니다.
+    3. todo 와 isCompelte에 ref를 걸어준 뒤 취소 버튼을 누르면 원래 데이터로 바꿔줍니다.
+    4. 수정버튼 클릭 시 ref로 걸어준 데이터와 id 값을 가져온 뒤 put으로 axios를 통신합니다.
+    5. 업데이트된 값을 res.data로 받아온 뒤 UI에 map을 통해 바꾸어주어 기존 순서가 꼬이지 않게 합니다.
+    6. 삭제버튼 클릭 시 id값을 받아와서 delete로 통신을 해준 뒤 filter로 id값이 다른 것들만 return 해줍니다.
 * 데모영상
+<br />
+
+<img src="./public/images/assignment5.gif" alt="Assignment4" width="600px" />
